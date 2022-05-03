@@ -69,6 +69,15 @@ public class ValidateBST {
         return true;
     }
 
+
+
+
+
+
+
+
+
+
     static class Meta {
         ArrayList<Integer> left = new ArrayList<Integer>();
         ArrayList<Integer> right = new ArrayList<Integer>();

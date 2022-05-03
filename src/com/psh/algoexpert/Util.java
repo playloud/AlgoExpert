@@ -11,6 +11,26 @@ public class Util {
             System.out.println(Arrays.toString(row));
     }
 
+    public static void print2D(double mat[][]) {
+        // Loop through all rows
+        for (double[] row : mat)
+            System.out.println(Arrays.toString(row));
+    }
+
+    public static void print2D(double mat[][], int pad) {
+        // Loop through all rows
+        var buf = new StringBuffer();
+        int digits = 3;
+        String rule = "%"+pad+"."+digits+"f";
+        for (double[] row : mat){
+            for (double d : row) {
+                buf.append(String.format(rule,d));
+            }
+            buf.append(System.lineSeparator());
+        }
+        System.out.println(buf.toString());
+    }
+
     public static void print2D(String mat[][]) {
         // Loop through all rows
         for (String[] strings : mat) {

@@ -2,6 +2,7 @@ package com.psh.algoexpert.recursion;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class AmbiguousMeasurements {
@@ -9,20 +10,25 @@ public class AmbiguousMeasurements {
     boolean globalResult = false;
     public boolean ambiguousMeasurements(int[][] measuringCups, int low, int high) {
         globalResult = false;
-        var cache = new HashSet<String>();
-        mySol(measuringCups, 0, 0, low, high, cache);
+        var cache2 = new HashMap<Integer, HashSet<Integer>>();
+        mySol(measuringCups, 0, 0, low, high, cache2);
         return globalResult;
     }
 
-    public void mySol(int[][] measures, int low, int high, int targetLow, int targetHigh, HashSet<String> cache) {
+    public void mySol(int[][] measures,
+                      int low, int high,
+                      int targetLow, int targetHigh,
+                      HashMap<Integer, HashSet<Integer>> cache) {
+
         if(globalResult) return;
 
-        String k = String.format("%d_%d", low, high);
-
-
-        if(cache.contains(k)) return;
-        cache.add(k);
-        System.out.println(k);
+        if(cache.containsKey(low)){
+            if(cache.get(low).contains(high))
+                return;
+        } else {
+            cache.put(low, new HashSet<Integer>());
+        }
+        cache.get(low).add(high);
 
         for (int i = 0; i < measures.length; i++) {
             int curLow = measures[i][0];
