@@ -66,6 +66,4 @@ public class BinaryTreeDiameter {
             return 1+Math.max(getMaxDepth(node.left), getMaxDepth(node.right));
         }
     }
-
-
 }

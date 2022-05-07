@@ -64,6 +64,22 @@ public class MinRewards {
             if(board[i] == 1) minQueue.add(i);
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // normalize between mins
         int startIndex = 0;
         int endIndex = 0;

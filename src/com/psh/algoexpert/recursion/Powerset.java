@@ -16,7 +16,10 @@ public class Powerset {
         return result;
     }
 
-    public static void myPSet(List<Integer> array, int startIndex,boolean[] map, ArrayList<Integer> buf, ArrayList<List<Integer>> result) {
+    public static void myPSet(List<Integer> array,
+                              int startIndex,boolean[] map,
+                              ArrayList<Integer> buf,
+                              ArrayList<List<Integer>> result) {
         if(buf.size() == array.size() ) return;
 
         for (int i = startIndex+1; i < array.size(); i++) {

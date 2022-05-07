@@ -69,6 +69,15 @@ public class SpiralTraverse {
             i--;
     }
 
+
+
+
+
+
+
+
+
+
     private static void doDown(int[][] mat, ArrayList<Integer> result, HashSet<String> trails) {
         while(true) {
             result.add(mat[i][j]);
@@ -100,7 +109,5 @@ public class SpiralTraverse {
         if(!trails.contains(nextKey))
             j++;
     }
-
-
 
 }

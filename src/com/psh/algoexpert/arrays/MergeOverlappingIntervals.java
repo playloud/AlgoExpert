@@ -49,8 +49,6 @@ public class MergeOverlappingIntervals {
             result[i][0] = cur.start;
             result[i][1] = cur.end;
         }
-
-
         // Write your code here.
         return result;
     }

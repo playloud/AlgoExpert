@@ -1,16 +1,12 @@
 package com.psh.algoexpert.heaps;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-
 public class ContinuousMedian {
     static class ContinuousMedianHandler {
         double median = 0;
-
         ArrayList<Integer> arr = new ArrayList<>();
         public void insert(int number) {
-
             if (arr.size() == 0) {
                 arr.add(number);
                 median = number;
@@ -61,11 +57,9 @@ public class ContinuousMedian {
                 }
             }
         }
-
         public double getMedian2() {
             return median2;
         }
-
         public void rebalanceQ() {
             if(minQ.size() - maxQ.size() == 2) {
                 maxQ.add(minQ.remove());
@@ -73,7 +67,6 @@ public class ContinuousMedian {
                 minQ.add(maxQ.remove());
             }
         }
-
         public double getMedian() {
             return median;
         }

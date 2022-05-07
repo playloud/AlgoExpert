@@ -65,5 +65,4 @@ public class GenerateDivTags {
             return;
         }
     }
-
 }

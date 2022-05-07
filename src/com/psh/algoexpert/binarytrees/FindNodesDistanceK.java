@@ -67,6 +67,17 @@ public class FindNodesDistanceK {
             count++;
         }
 
+
+
+
+
+
+
+
+
+
+
+
         // going up
         queue.clear();
         count = 0;

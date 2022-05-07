@@ -1,24 +1,18 @@
 //https://www.algoexpert.io/questions/Laptop%20Rentals
 package com.psh.algoexpert.heaps;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
-
 public class LaptopRentals {
-
     public int laptopRentals(ArrayList<ArrayList<Integer>> times) {
-
         var allRentals = new ArrayList<Rental>();
         // build rentals
         for (ArrayList<Integer> time : times) {
             var r = new Rental(time.get(0), time.get(1));
             allRentals.add(r);
         }
-
         // sort rentals
         var sortedRentals = allRentals.stream().sorted(new RentalComp()).collect(Collectors.toList());
-
         // calculate rentals
         int rentalCount = 0;
         while (sortedRentals.size() > 0) {
@@ -42,14 +36,11 @@ public class LaptopRentals {
         }
         return rentalCount;
     }
-
-
 }
 
 class RentalComp implements Comparator<Rental> {
     @Override
     public int compare(Rental r1, Rental r2) {
-
         if(r1.start < r2.start) {
             return -1;
         } else if (r1.start == r2.start) {
@@ -67,15 +58,12 @@ class RentalComp implements Comparator<Rental> {
 }
 
 class Rental {
-    int start = 0;
-    int end = 0;
-    int duration = 0;
+    int start = 0; int end = 0; int duration = 0;
     public Rental(int s, int e) {
         this.start = s;
         this.end = e;
         this.duration = (e-s);
     }
-
     public boolean isOverlapped(Rental other) {
 
         if(other.start < this.start && this.start < other.end) return true;
