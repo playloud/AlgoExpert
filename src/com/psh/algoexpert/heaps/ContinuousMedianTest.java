@@ -5,8 +5,6 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
-
 public class ContinuousMedianTest {
 
     @Test
@@ -15,10 +13,10 @@ public class ContinuousMedianTest {
         var rand = new Random();
         for (int i = 0; i < 100; i++) {
             int value = rand.nextInt(100);
+            app.insert_incorrect(value);
             app.insert(value);
-            app.insert2(value);
-            double m = app.getMedian();
-            double m2 = app.getMedian2();
+            double m = app.getMedian_incorrect();
+            double m2 = app.getMedian();
             System.out.println("median:" + m2);
             System.out.println();
             //System.out.println(String.format("%f %f", m, m2));
