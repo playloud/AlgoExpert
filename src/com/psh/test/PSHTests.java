@@ -1,7 +1,11 @@
 package com.psh.test;
 
 import org.junit.Test;
+
+import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class PSHTests {
@@ -35,6 +39,11 @@ public class PSHTests {
         public void doMan() {
             System.out.println("doman_gen2");
         }
+    }
+
+    @Test
+    public void testsss() {
+        System.out.println("abc".substring(1));
     }
 
     @Test
@@ -144,6 +153,30 @@ public class PSHTests {
                     '}';
         }
     }
+
+    @Test
+    public void test_covert_ArrayListToArray() {
+        var arrList = new ArrayList<Integer>();
+        IntStream.range(0, 100).forEach(a->arrList.add(a));
+        //this is only way to covert
+        var arr = arrList.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(arr));
+    }
+
+    @Test
+    public void test_dates() throws Exception {
+        var sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println("days between:"+daysBetweenDates(sdf.parse("1978-01-14"), new Date()));
+        System.out.println("years between:"+daysBetweenDates(sdf.parse("1978-01-14"), new Date())/365);
+    }
+
+    public int daysBetweenDates(Date d1, Date d2) {
+        long diff = d1.getTime() - d2.getTime();
+        long daysDiff = TimeUnit.DAYS.convert(Math.abs(diff), TimeUnit.MILLISECONDS);
+        return (int)daysDiff;
+    }
+
+
 
 
 
