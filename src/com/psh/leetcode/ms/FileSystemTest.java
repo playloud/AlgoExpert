@@ -56,4 +56,29 @@ public class FileSystemTest {
 
     }
 
+    @Test
+    public void test05() {
+        var app = new FileSystem();
+        app.mkdir("/goowmfn");
+        System.out.println(app.ls("/goowmfn"));;
+        System.out.println(app.ls("/"));;
+        app.mkdir("z");
+        System.out.println(app.ls("/"));;
+        System.out.println(app.ls("/"));;
+        app.addContentToFile("/goowmfn/c","shetopcy");
+        System.out.println(app.ls("/z"));;
+        System.out.println(app.ls("/goowmfn/c"));;
+        System.out.println(app.ls("/goowmfn"));;
+
+    }
+
+    @Test
+    public void test06() {
+        var app = new FileSystem();
+        System.out.println(app.ls("/"));;
+        app.mkdir("/a/b/c");
+        System.out.println(app.ls("/a/b"));;
+
+    }
+
 }

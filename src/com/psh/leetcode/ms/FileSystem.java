@@ -1,7 +1,9 @@
 package com.psh.leetcode.ms;
 import java.util.*;
 import java.util.stream.Collectors;
-
+//https://leetcode.com/problems/design-in-memory-file-system/
+//Runtime: 51 ms, faster than 79.53% of Java online submissions for Design In-Memory File System.
+//Memory Usage: 43 MB, less than 93.04% of Java online submissions for Design In-Memory File System.
 //Input
 //["FileSystem", "ls", "mkdir", "addContentToFile", "ls", "readContentFromFile"]
 //[[],           ["/"], ["/a/b/c"], ["/a/b/c/d", "hello"], ["/"], ["/a/b/c/d"]]
@@ -21,7 +23,11 @@ public class FileSystem {
         if (pathes.length == 0 ) {
             // getting root's directories
             root.dirs.forEach(a->{
-                System.out.println(a.name);
+                //System.out.println(a.name);
+                result.add(a.name);
+            });
+
+            root.files.forEach(a->{
                 result.add(a.name);
             });
         } else {
@@ -32,32 +38,42 @@ public class FileSystem {
                 if (curPath.equals(""))
                     continue;
 
+                // if last item?
                 if(i== pathes.length-1) {
+                    // curpath is file?
                     if(curDir.files.stream().anyMatch(a->a.name.equals(curPath))) {
                         // fileName
                         result.add(curPath);
                         return result;
-                    } else {
+                    } else { // directory name
                         if(curDir.dirs.stream().anyMatch(a->a.name.equals(curPath))) {
-                            Dir pp = curDir.dirs.stream().filter(a->a.name.equals(curPath)).collect(Collectors.toList()).get(0);
+                            Dir pp = curDir.dirs.stream()
+                                    .filter(a->a.name.equals(curPath))
+                                    .collect(Collectors.toList())
+                                    .get(0);
                             curDir = pp;
-                        } else {
-                            return result;
+
+                            curDir.files.forEach(a->{
+                                result.add(a.name);
+                            });
+
+                            curDir.dirs.forEach(a->{
+                                result.add(a.name);
+                            });
                         }
                     }
                 } else {
                     if(curDir.dirs.stream().filter(a->a.name.equals(curPath)).count() > 0) {
-                        Dir pp = curDir.dirs.stream().filter(a->a.name.equals(curPath)).collect(Collectors.toList()).get(0);
+                        Dir pp = curDir.dirs.stream()
+                                .filter(a->a.name.equals(curPath))
+                                .collect(Collectors.toList())
+                                .get(0);
                         curDir = pp;
                     } else {
                         return result;
                     }
                 }
             }
-
-            curDir.dirs.forEach(a->{
-                result.add(a.name);
-            });
         }
         result.sort(Comparator.naturalOrder());
         return result;
@@ -107,7 +123,10 @@ public class FileSystem {
             }
         }
         if(curDir.files.stream().filter(f->f.name.equals(fileName)).count() > 0) {
-            curDir.files.stream().filter(f->f.name.equals(fileName)).collect(Collectors.toList()).get(0).content += content;
+            curDir.files.stream()
+                    .filter(f->f.name.equals(fileName))
+                    .collect(Collectors.toList())
+                    .get(0).content += content;
         } else {
             curDir.files.add(newFile);
         }
