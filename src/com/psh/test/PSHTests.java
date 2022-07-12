@@ -2,11 +2,14 @@ package com.psh.test;
 
 import org.junit.Test;
 
+import java.security.KeyPair;
 import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
+import javax.tools.*;
+
 
 public class PSHTests {
 
@@ -169,7 +172,8 @@ public class PSHTests {
     public void test_dates() throws Exception {
         var sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println("days between:" + daysBetweenDates(sdf.parse("1978-01-14"), new Date()));
-        System.out.println("years between:" + daysBetweenDates(sdf.parse("1978-01-14"), new Date()) / 365);
+        System.out.println("monthes between:" + monthesBetweenDates(sdf.parse("1978-01-14"), new Date()));
+        System.out.println("years between:" + yearsBetweenDates(sdf.parse("1978-01-14"), new Date()));
     }
 
     public int daysBetweenDates(Date d1, Date d2) {
@@ -178,14 +182,38 @@ public class PSHTests {
         return (int) daysDiff;
     }
 
+    // this is kind of standard
+    public int yearsBetweenDates(Date d1, Date d2) {
+        Calendar cal1 = new GregorianCalendar();
+        cal1.setTime(d1);
+        Calendar cal2 = new GregorianCalendar();
+        cal2.setTime(d2);
+        int yearBetween = cal1.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
+        return yearBetween;
+    }
+
+    public int monthesBetweenDates(Date d1, Date d2) {
+        Calendar cal1 = new GregorianCalendar();
+        cal1.setTime(d1);
+        Calendar cal2 = new GregorianCalendar();
+        cal2.setTime(d2);
+        int yearBetween = cal1.get(Calendar.MONTH) - cal2.get(Calendar.MONTH);
+        return yearBetween;
+    }
+
     @Test
     public void testHMap() {
         //THIS IS NOT WORKING!!
         var myMap = new HashMap<int[], String>();
-        var myKey = new int[]{1,2};
+        var myKey = new int[]{1, 2};
         myMap.put(myKey, "this is testtest");
         System.out.println(myMap.get(new int[]{1, 2}));
         System.out.println(myMap.get(myKey));
+    }
+
+    @Test
+    public void testPair() {
+        // there is no pair class in JDK
     }
 
 
