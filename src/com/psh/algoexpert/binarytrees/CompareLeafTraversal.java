@@ -47,4 +47,22 @@ public class CompareLeafTraversal {
             dfs(node.right, leaves);
         }
     }
+
+    public void preOrder(BinaryTree node) {
+        if(node.left != null) {
+            preOrder(node.left);
+        }
+
+        System.out.print(node.value+" ");
+
+        if(node.right != null) {
+            preOrder(node.right);
+        }
+    }
+
+    public void inOrder(BinaryTree node) {
+        System.out.print(node.value +" ");
+        if(node.left != null)  inOrder(node.left);
+        if(node.right != null)  inOrder(node.right);
+    }
 }
