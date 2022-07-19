@@ -49,20 +49,20 @@ public class CompareLeafTraversal {
     }
 
     public void preOrder(BinaryTree node) {
-        if(node.left != null) {
-            preOrder(node.left);
-        }
-
+        if(node.left != null)  preOrder(node.left);
         System.out.print(node.value+" ");
-
-        if(node.right != null) {
-            preOrder(node.right);
-        }
+        if(node.right != null)  preOrder(node.right);
     }
 
     public void inOrder(BinaryTree node) {
         System.out.print(node.value +" ");
         if(node.left != null)  inOrder(node.left);
         if(node.right != null)  inOrder(node.right);
+    }
+
+    public void postOrder(BinaryTree node) {
+        if(node.left != null)  postOrder(node.left);
+        if(node.right != null)  postOrder(node.right);
+        System.out.print(node.value +" ");
     }
 }

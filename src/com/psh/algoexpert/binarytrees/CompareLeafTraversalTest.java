@@ -51,20 +51,26 @@ public class CompareLeafTraversalTest {
         root1.right.right = new CompareLeafTraversal.BinaryTree(6);
 
 
-        var root2 = new CompareLeafTraversal.BinaryTree(1);
-        root2.left = new CompareLeafTraversal.BinaryTree(2);
-        root2.left.left = new CompareLeafTraversal.BinaryTree(4);
-        root2.left.right = new CompareLeafTraversal.BinaryTree(7);
+        var root2 = new CompareLeafTraversal.BinaryTree(5);
+        root2.left = new CompareLeafTraversal.BinaryTree(3);
+        root2.left.left = new CompareLeafTraversal.BinaryTree(1);
+        root2.left.right = new CompareLeafTraversal.BinaryTree(4);
 
-        root2.right = new CompareLeafTraversal.BinaryTree(3);
-        root2.right.right = new CompareLeafTraversal.BinaryTree(5);
-        root2.right.right.left = new CompareLeafTraversal.BinaryTree(8);
-        root2.right.right.right = new CompareLeafTraversal.BinaryTree(6);
+        root2.right = new CompareLeafTraversal.BinaryTree(7);
+        root2.right.left = new CompareLeafTraversal.BinaryTree(6);
+        root2.right.right = new CompareLeafTraversal.BinaryTree(9);
 
         var app = new CompareLeafTraversal();
-        app.preOrder(root1);
+        System.out.println("preOrder");
+        app.preOrder(root2);
         System.out.println();
-        app.inOrder(root1);
+
+        System.out.println("inOrder");
+        app.inOrder(root2);
+        System.out.println();
+
+        System.out.println("postOrder");
+        app.postOrder(root2);
 
     }
 

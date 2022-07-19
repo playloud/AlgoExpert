@@ -10,9 +10,7 @@ public class CalendarMatching {
             StringMeeting dailyBounds2,
             int meetingDuration) {
 
-        if ((dailyBounds1 == null) ||
-                (dailyBounds2 == null) ||
-                (!IsMergable(dailyBounds1, dailyBounds2))) {
+        if ((dailyBounds1 == null) || (dailyBounds2 == null) || (!isMergable(dailyBounds1, dailyBounds2))) {
             return new ArrayList<StringMeeting>();
         }
 
@@ -49,13 +47,13 @@ public class CalendarMatching {
             if (queue2.size() > 0)
                 sm2 = queue2.get(0);
 
-            if (IsMergable(sm1, sm2)) {
+            if (isMergable(sm1, sm2)) {
 
-                var merged = MergeTwo(sm1, sm2);
+                var merged = mergeTwo(sm1, sm2);
                 queue1.remove(0);
                 queue2.remove(0);
 
-                if (queue1.size() == 0 || !IsMergable(merged, queue1.get(0))) {
+                if (queue1.size() == 0 || !isMergable(merged, queue1.get(0))) {
                     queue1.add(0, merged);
                 } else {
                     queue2.add(0, merged);
@@ -75,7 +73,7 @@ public class CalendarMatching {
                 }
             }
         }
-        StringMeeting boundary = MergeTwoMin(dailyBounds1, dailyBounds2);
+        StringMeeting boundary = mergeTwoMin(dailyBounds1, dailyBounds2);
 
 
 
@@ -217,7 +215,7 @@ public class CalendarMatching {
 
     }
 
-    public static StringMeeting MergeTwo(StringMeeting a, StringMeeting b) {
+    public static StringMeeting mergeTwo(StringMeeting a, StringMeeting b) {
         StringMeeting merged = new StringMeeting("00:00", "00:00");
 
         merged.startMin = Math.min(a.startMin, b.startMin);
@@ -228,7 +226,7 @@ public class CalendarMatching {
         return merged;
     }
 
-    public static StringMeeting MergeTwoMin(StringMeeting a, StringMeeting b) {
+    public static StringMeeting mergeTwoMin(StringMeeting a, StringMeeting b) {
         StringMeeting merged = new StringMeeting("0:0", "0:0");
 
         merged.startMin = Math.max(a.startMin, b.startMin);
@@ -239,7 +237,7 @@ public class CalendarMatching {
         return merged;
     }
 
-    public static boolean IsMergable(StringMeeting a, StringMeeting b) {
+    public static boolean isMergable(StringMeeting a, StringMeeting b) {
         if (a == null || b == null) return false;
 
         if (a.startMin <= b.startMin && b.startMin <= a.endMin)
